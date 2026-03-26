@@ -18,14 +18,13 @@ async function apiFetch(path: string, token: string, options?: RequestInit) {
 }
 
 export default function LocaisVotacao() {
-  const { user } = useAuth()
+  const { token } = useAuth()
   const [locais, setLocais] = useState<LocalVotacao[]>([])
   const [zonas, setZonas] = useState<ZonaEleitoral[]>([])
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [form, setForm] = useState({ nome_local: '', endereco: '', zona_id: '', secao_observacao: '' })
   const [erro, setErro] = useState('')
-  const token = user?.access_token ?? ''
 
   async function carregar() {
     setLoading(true)

@@ -17,14 +17,13 @@ async function apiFetch(path: string, token: string, options?: RequestInit) {
 }
 
 export default function Dobradinhas() {
-  const { user } = useAuth()
+  const { token } = useAuth()
   const [dobradinhas, setDobradinhas] = useState<Dobradinha[]>([])
   const [usuarios, setUsuarios] = useState<Profile[]>([])
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [erro, setErro] = useState('')
   const [form, setForm] = useState({ nome: '', descricao: '', responsavel_user_id: '', ativa: true })
-  const token = user?.access_token ?? ''
 
   async function carregar() {
     setLoading(true)

@@ -6,17 +6,17 @@ import Layout from '../components/Layout'
 const API = import.meta.env.VITE_API_URL
 
 export default function Dashboard() {
-  const { user, profile } = useAuth()
+  const { token, profile } = useAuth()
   const [stats, setStats] = useState<any>(null)
 
   useEffect(() => {
-    if (!user?.access_token) return
+    if (!token) return
     fetch(`${API}/dashboard/stats`, {
-      headers: { Authorization: `Bearer ${user.access_token}` }
+      headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.json())
       .then(setStats)
-  }, [user])
+  }, [token])
 
   const perfil = profile?.perfil
 

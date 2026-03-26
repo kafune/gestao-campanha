@@ -80,7 +80,7 @@ cd frontend && npm run dev
 
 ### Tabelas ativas (Sprint 1)
 - `profiles` — espelho do Supabase Auth com perfil, zona, segmento, link_codigo
-- `zonas_eleitorais`
+- `zonas_eleitorais` — inclui `numero`, `regiao_principal`, `bairros text[]`; 7 zonas de Guarulhos já importadas via migration 006
 - `segmentos`
 
 ### Tabelas futuras

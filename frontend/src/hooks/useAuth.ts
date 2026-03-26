@@ -4,17 +4,20 @@ import type { Profile } from '../types'
 
 export function useAuth() {
   const [user, setUser] = useState<any>(null)
+  const [session, setSession] = useState<any>(null)
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
       setUser(session?.user ?? null)
       if (session?.user) fetchProfile(session.user.id)
       setLoading(false)
     })
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
       setUser(session?.user ?? null)
       if (session?.user) {
         fetchProfile(session.user.id)
@@ -49,5 +52,5 @@ export function useAuth() {
     })
   }
 
-  return { user, profile, loading, login, logout, recuperarSenha }
+  return { user, profile, loading, token: session?.access_token ?? '', login, logout, recuperarSenha }
 }

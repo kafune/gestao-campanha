@@ -25,13 +25,12 @@ async function apiFetch(path: string, token: string, options?: RequestInit) {
 }
 
 export default function Segmentos() {
-  const { user } = useAuth()
+  const { token } = useAuth()
   const [segmentos, setSegmentos] = useState<Segmento[]>([])
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [form, setForm] = useState({ nome: '', tipo: 'igreja' as TipoSegmento })
   const [erro, setErro] = useState('')
-  const token = user?.access_token ?? ''
 
   async function carregar() {
     setLoading(true)

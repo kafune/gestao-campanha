@@ -27,7 +27,7 @@ async function apiFetch(path: string, token: string, options?: RequestInit) {
 }
 
 export default function Acoes() {
-  const { user } = useAuth()
+  const { token } = useAuth()
   const [acoes, setAcoes] = useState<any[]>([])
   const [zonas, setZonas] = useState<ZonaEleitoral[]>([])
   const [loading, setLoading] = useState(true)
@@ -37,7 +37,6 @@ export default function Acoes() {
     titulo: '', tipo_acao: 'visita', data_acao: '', endereco: '',
     zona_id: '', anfitriao_nome: '', anfitriao_telefone: '', anfitriao_email: '', descricao: ''
   })
-  const token = user?.access_token ?? ''
 
   async function carregar() {
     setLoading(true)

@@ -18,14 +18,13 @@ async function apiFetch(path: string, token: string, options?: RequestInit) {
 }
 
 export default function Usuarios() {
-  const { user } = useAuth()
+  const { token } = useAuth()
   const [usuarios, setUsuarios] = useState<Profile[]>([])
   const [zonas, setZonas] = useState<ZonaEleitoral[]>([])
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [form, setForm] = useState({ email: '', senha: '', nome: '', perfil: 'lideranca' as Perfil, zona_id: '', whatsapp: '', coordenador_id: '' })
   const [erro, setErro] = useState('')
-  const token = user?.access_token ?? ''
 
   async function carregar() {
     setLoading(true)

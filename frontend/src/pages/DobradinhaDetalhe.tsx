@@ -19,8 +19,7 @@ async function apiFetch(path: string, token: string, options?: RequestInit) {
 
 export default function DobradinhaDetalhe() {
   const { id } = useParams<{ id: string }>()
-  const { user } = useAuth()
-  const token = user?.access_token ?? ''
+  const { token } = useAuth()
 
   const [dobradinha, setDobradinha] = useState<Dobradinha | null>(null)
   const [locaisDisponiveis, setLocaisDisponiveis] = useState<LocalVotacao[]>([])
