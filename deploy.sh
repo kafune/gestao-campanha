@@ -11,7 +11,7 @@ npm run build
 cd ..
 
 echo "==> Sincronizando dist para o diretório Nginx"
-rsync -av --delete frontend/dist/ /var/www/campanha/dist/
+rsync -av --delete frontend/dist/ /var/www/gestao-campanha/dist/
 
 echo "==> Rebuild e restart do backend"
 docker compose build api
