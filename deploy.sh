@@ -1,23 +1,28 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
-echo "==> Pull do repositório"
+FRONTEND_DIST="/var/www/campanha/dist"
+COMPOSE_DIR="$(dirname "$(realpath "$0")")"
+
+echo "==> [1/5] Pull do repositório"
+cd "$COMPOSE_DIR"
 git pull origin main
 
-echo "==> Build do frontend (local, não na VPS)"
-cd frontend
-npm install
+echo "==> [2/5] Build do frontend"
+cd "$COMPOSE_DIR/frontend"
+npm ci
 npm run build
-cd ..
 
-echo "==> Sincronizando dist para o diretório Nginx"
-rsync -av --delete frontend/dist/ /var/www/gestao-campanha/dist/
+echo "==> [3/5] Copiando dist para o diretório Nginx"
+rsync -a --delete "$COMPOSE_DIR/frontend/dist/" "$FRONTEND_DIST/"
 
-echo "==> Rebuild e restart do backend"
+echo "==> [4/5] Rebuild e restart do backend"
+cd "$COMPOSE_DIR"
 docker compose build api
 docker compose up -d api
 
-echo "==> Reload Nginx"
+echo "==> [5/5] Reload do Nginx"
 sudo nginx -t && sudo systemctl reload nginx
 
-echo "Deploy concluído"
+echo ""
+echo "Deploy concluído com sucesso!"
