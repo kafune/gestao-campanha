@@ -14,8 +14,8 @@ bun install
 bun run build
 
 echo "==> [3/5] Copiando dist para o diretório Nginx"
-mkdir -p "$FRONTEND_DIST"
-rsync -a --delete "$COMPOSE_DIR/frontend/dist/" "$FRONTEND_DIST/"
+sudo mkdir -p "$FRONTEND_DIST"
+sudo rsync -a --delete "$COMPOSE_DIR/frontend/dist/" "$FRONTEND_DIST/"
 
 echo "==> [4/5] Rebuild e restart do backend"
 cd "$COMPOSE_DIR"
