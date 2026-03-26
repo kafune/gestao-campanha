@@ -10,8 +10,8 @@ git pull origin main
 
 echo "==> [2/5] Build do frontend"
 cd "$COMPOSE_DIR/frontend"
-npm ci
-npm run build
+bun install
+bun run build
 
 echo "==> [3/5] Copiando dist para o diretório Nginx"
 rsync -a --delete "$COMPOSE_DIR/frontend/dist/" "$FRONTEND_DIST/"
