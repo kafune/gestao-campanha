@@ -23,7 +23,13 @@ export default async function usuariosRoutes(fastify: any) {
 
     const { data, error } = await supabaseAdmin
       .from('profiles')
-      .update({ nome, perfil, zona_id, coordenador_id, whatsapp })
+      .update({
+        nome,
+        perfil,
+        zona_id: zona_id || null,
+        coordenador_id: coordenador_id || null,
+        whatsapp
+      })
       .eq('id', authData.user.id)
       .select()
       .single()
@@ -37,7 +43,7 @@ export default async function usuariosRoutes(fastify: any) {
 
     const { data, error } = await supabaseAdmin
       .from('profiles')
-      .update({ nome, perfil, zona_id, coordenador_id, whatsapp, status })
+      .update({ nome, perfil, zona_id: zona_id || null, coordenador_id: coordenador_id || null, whatsapp, status })
       .eq('id', id)
       .select()
       .single()
