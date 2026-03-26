@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-FRONTEND_DIST="/var/www/campanha/dist"
+FRONTEND_DIST="/var/www/gestao-campanha/dist"
 COMPOSE_DIR="$(dirname "$(realpath "$0")")"
 
 echo "==> [1/5] Pull do repositório"
