@@ -39,7 +39,7 @@ export default function Segmentos() {
     setLoading(false)
   }
 
-  useEffect(() => { carregar() }, [])
+  useEffect(() => { if (token) carregar() }, [token])
 
   async function handleCriar(e: React.FormEvent) {
     e.preventDefault()

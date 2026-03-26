@@ -41,7 +41,7 @@ export default function DobradinhaDetalhe() {
     setLoading(false)
   }
 
-  useEffect(() => { carregar() }, [id])
+  useEffect(() => { if (token) carregar() }, [id, token])
 
   async function handleToggleAtiva() {
     if (!dobradinha) return

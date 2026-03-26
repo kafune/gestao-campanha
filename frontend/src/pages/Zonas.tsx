@@ -28,7 +28,7 @@ export default function Zonas() {
     setLoading(false)
   }
 
-  useEffect(() => { carregar() }, [])
+  useEffect(() => { if (token) carregar() }, [token])
 
   async function handleCriar(e: React.FormEvent) {
     e.preventDefault()
