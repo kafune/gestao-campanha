@@ -21,6 +21,9 @@ export interface ZonaEleitoral {
   id: string
   nome: string
   codigo: string | null
+  numero: number | null
+  regiao_principal: string | null
+  bairros: string[] | null
   observacoes: string | null
   created_at: string
 }

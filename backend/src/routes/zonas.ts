@@ -24,10 +24,10 @@ export default async function zonasRoutes(fastify: any) {
 
   fastify.put('/zonas/:id', async (request: any, reply: any) => {
     const { id } = request.params
-    const { nome, codigo, observacoes } = request.body
+    const { nome, codigo, numero, regiao_principal, bairros, observacoes } = request.body
     const { data, error } = await supabaseAdmin
       .from('zonas_eleitorais')
-      .update({ nome, codigo, observacoes })
+      .update({ nome, codigo, numero: numero || null, regiao_principal, bairros, observacoes })
       .eq('id', id)
       .select()
       .single()
